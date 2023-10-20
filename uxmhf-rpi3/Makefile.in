@@ -73,9 +73,9 @@ ifeq ($(INTPROT), y)
 	#CFLAGS_DEFS += -D__INTPROT__
 endif
 
-if 1
-	CFLAGS_DEFS += -D__FIQREFLECTION__
-endif
+#if 1
+CFLAGS_DEFS += -D__FIQREFLECTION__
+#endif
 
 ifeq ($(ENABLE_UAPP_UHSIGN),y)
 	CFLAGS_DEFS += -D__ENABLE_UAPP_UHSIGN__
