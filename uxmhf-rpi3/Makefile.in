@@ -73,7 +73,7 @@ ifeq ($(INTPROT), y)
 	#CFLAGS_DEFS += -D__INTPROT__
 endif
 
-ifeq 1
+if 1
 	CFLAGS_DEFS += -D__FIQREFLECTION__
 endif
 
