@@ -20,7 +20,7 @@ RUN git clone https://github.com/raspberrypi/linux.git --depth 1 --branch rpi-4.
     mkdir -p /uxmhf-rpi3-staging/boot && \
     cp ./arch/arm/boot/dts/*.dtb /uxmhf-rpi3-staging/boot/. && cd ..
 
-RUN git clone https://github.com/hypcode/uberxmhf.git && \
+RUN git clone https://github.com/zhang-zichao/uberxmhf.git && \
     cd uberxmhf/uxmhf-rpi3 && ./bsconfigure.sh && ./configure && \
     make clean && make OSKRNLIMG=/uxmhf-rpi3-staging/kernel7.img && \
     cp uxmhf-rpi3.img /uxmhf-rpi3-staging/. && \
@@ -33,6 +33,6 @@ RUN cd /uberxmhf/uxmhf-rpi3/rgapps/linux/rgapp-uhcallkmod && \
 RUN cd /uberxmhf/uxmhf-rpi3/rgapps/linux/ && make -w all && cd rgapp-uhcalltest && \
     make -w all && cp ./uhcalltest /uxmhf-rpi3-staging/.
 
-COPY transfer.sh /
+# COPY transfer.sh /
 
-RUN /bin/bash
+# RUN /bin/bash
