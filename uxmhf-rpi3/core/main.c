@@ -556,7 +556,7 @@ void main(u32 r0, u32 id, struct atag *at, u32 cpuid){
 		uapp_pvdriver_uart_initialize_uapp(cpuid);
 	#endif
 
-	//uapp_watchdog_initialize(0);
+	uapp_watchdog_initialize(0);
 	
 	//////
 
