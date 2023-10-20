@@ -62,18 +62,18 @@ CFLAGS_DEFS =  $(INCS) -I./include -I../include
 ######
 
 ifeq ($(SECBOOT), y)
-	CFLAGS_DEFS += -D__SECBOOT__
+	#CFLAGS_DEFS += -D__SECBOOT__
 endif
 
 ifeq ($(DMAPROT), y)
-	CFLAGS_DEFS += -D__DMAPROT__
+	#CFLAGS_DEFS += -D__DMAPROT__
 endif
 
 ifeq ($(INTPROT), y)
-	CFLAGS_DEFS += -D__INTPROT__
+	#CFLAGS_DEFS += -D__INTPROT__
 endif
 
-ifeq ($(FIQREFLECTION), y)
+ifeq 1
 	CFLAGS_DEFS += -D__FIQREFLECTION__
 endif
 

@@ -21,7 +21,7 @@ RUN git clone https://github.com/raspberrypi/linux.git --depth 1 --branch rpi-4.
     cp ./arch/arm/boot/dts/*.dtb /uxmhf-rpi3-staging/boot/. && cd ..
 
 RUN git clone https://github.com/zhang-zichao/uberxmhf.git && \
-    cd uberxmhf/uxmhf-rpi3 && ./bsconfigure.sh && ./configure && \
+    cd uberxmhf/uxmhf-rpi3 && ./bsconfigure.sh && ./configure --enable-fiqreflection && \
     make clean && make OSKRNLIMG=/uxmhf-rpi3-staging/kernel7.img && \
     cp uxmhf-rpi3.img /uxmhf-rpi3-staging/. && \
     cp rpi3-config.txt /uxmhf-rpi3-staging/config.txt
