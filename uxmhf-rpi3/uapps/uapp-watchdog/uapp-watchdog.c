@@ -43,7 +43,7 @@
 #include <bcm2837.h>
 #include <uart.h>
 #include <debug.h>
-// #include <unistd.h>
+#include <unistd.h>
 
 extern void uapp_watchdog_fiq_handler(void);
 
@@ -158,7 +158,7 @@ void uapp_watchdog_blink_led(u32 cpuid){
 		OUT_GPIO(7);
 		while(1){
 			GPIO_CLR = (1 << 7);
-			// sleep(1);
+			sleep(1);
 			GPIO_SET = (1 << 7);
 		}
 	}
