@@ -143,9 +143,9 @@ void uapp_watchdog_timerhandler(void){
 
 
 void uapp_watchdog_initialize(u32 cpuid){
-	return;
 	if(cpuid == 0){
 		hypvtable_setentry(cpuid, 7, (u32)&uapp_watchdog_fiq_handler);
+		return;
 		uapp_watchdog_timer_initialize(cpuid);
 
 	}
