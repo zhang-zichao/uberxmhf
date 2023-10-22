@@ -90,7 +90,6 @@ void uapp_watchdog_timer_initialize(u32 cpuid){
 			((cpu0_tintctl_value & (1UL << 2)) >> 2)
 			);
     
-	return;
 
 
 	//cpsr = sysreg_read_cpsr();
@@ -103,6 +102,8 @@ void uapp_watchdog_timer_initialize(u32 cpuid){
 	_XDPRINTFSMP_("%s[%u]: CNTHP_TVAL[initial]=%d\n", __func__, cpuid, sysreg_read_cnthp_tval());
 	sysreg_write_cnthp_tval(10*1024*1024);
 	_XDPRINTFSMP_("%s[%u]: CNTHP_TVAL[reset]=%d\n", __func__, cpuid, sysreg_read_cnthp_tval());
+
+	return;
 
 	sysreg_write_cnthp_ctl(0x1);
 	_XDPRINTFSMP_("%s[%u]: CNTHP_TVAL[current]=%d\n", __func__, cpuid, sysreg_read_cnthp_tval());
