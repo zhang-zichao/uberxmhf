@@ -120,11 +120,11 @@ uapp-pa5encfs.o : ../uapps/uapp-pa5encfs/uapp-pa5encfs.c
 	$(TOOLPREFIX)gcc $(CFLAGS) ../uapps/uapp-pa5encfs/uapp-pa5encfs.c -o uapp-pa5encfs.o
 
 
-# uapp-watchdogsup.o : ../uapps/uapp-watchdog/uapp-watchdogsup.s
-# 	$(TOOLPREFIX)gcc $(CFLAGS) ../uapps/uapp-watchdog/uapp-watchdogsup.s -o uapp-watchdogsup.o
+uapp-watchdogsup.o : ../uapps/uapp-watchdog/uapp-watchdogsup.s
+	$(TOOLPREFIX)gcc $(CFLAGS) ../uapps/uapp-watchdog/uapp-watchdogsup.s -o uapp-watchdogsup.o
 
-# uapp-watchdog.o : ../uapps/uapp-watchdog/uapp-watchdog.c
-# 	$(TOOLPREFIX)gcc $(CFLAGS) ../uapps/uapp-watchdog/uapp-watchdog.c -o uapp-watchdog.o
+uapp-watchdog.o : ../uapps/uapp-watchdog/uapp-watchdog.c
+	$(TOOLPREFIX)gcc $(CFLAGS) ../uapps/uapp-watchdog/uapp-watchdog.c -o uapp-watchdog.o
 
 
 ghcall.o : ghcall.c
