@@ -89,7 +89,8 @@ void uapp_watchdog_timer_initialize(u32 cpuid){
 			((cpu0_tintctl_value & (1UL << 6)) >> 6),
 			((cpu0_tintctl_value & (1UL << 2)) >> 2)
 			);
-
+    
+	return;
 
 
 	//cpsr = sysreg_read_cpsr();
@@ -145,7 +146,6 @@ void uapp_watchdog_timerhandler(void){
 void uapp_watchdog_initialize(u32 cpuid){
 	if(cpuid == 0){
 		hypvtable_setentry(cpuid, 7, (u32)&uapp_watchdog_fiq_handler);
-		return;
 		uapp_watchdog_timer_initialize(cpuid);
 
 	}
