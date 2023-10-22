@@ -155,14 +155,16 @@ void uapp_watchdog_blink_led(u32 cpuid){
 		gpio = (u32 *)GPIO_BASE;
 		INP_GPIO(7); // must use INP_GPIO before we can use OUT_GPIO
 		OUT_GPIO(7);
+		u32 i;
+		u32 j;
 		while(1){
 			GPIO_CLR = (1 << 7);
-			for(u32 i=0;i<1024*1024;i++){
-				for (u32 j=0;j<1024;j++){}
+			for(i=0;i<1024*1024;i++){
+				for (j=0;j<1024;j++){}
 			}
 			GPIO_SET = (1 << 7);
-			for(u32 i=0;i<1024*1024;i++){
-				for (u32 j=0;j<1024;j++){}
+			for(i=0;i<1024*1024;i++){
+				for (j=0;j<1024;j++){}
 			}
 		}
 	}
