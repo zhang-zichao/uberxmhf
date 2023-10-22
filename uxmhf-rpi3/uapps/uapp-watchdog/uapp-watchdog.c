@@ -43,7 +43,7 @@
 #include <bcm2837.h>
 #include <uart.h>
 #include <debug.h>
-
+// #include <unistd.h>
 
 extern void uapp_watchdog_fiq_handler(void);
 
@@ -148,5 +148,18 @@ void uapp_watchdog_initialize(u32 cpuid){
 		hypvtable_setentry(cpuid, 7, (u32)&uapp_watchdog_fiq_handler);
 		uapp_watchdog_timer_initialize(cpuid);
 
+	}
+}
+
+void uapp_watchdog_blink_led(u32 cpuid){
+    if (cpuid == 1){
+		gpio = (u32 *)GPIO_BASE;
+		INP_GPIO(7); // must use INP_GPIO before we can use OUT_GPIO
+		OUT_GPIO(7);
+		while(1){
+			GPIO_CLR = (1 << 7);
+			// sleep(1);
+			GPIO_SET = (1 << 7);
+		}
 	}
 }

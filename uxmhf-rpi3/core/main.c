@@ -42,7 +42,7 @@
 #include <atags.h>
 #include <fdt.h>
 #include <dmaprot.h>
-#include <unistd.h>
+// #include <unistd.h>
 
 //////
 // externs
@@ -52,11 +52,11 @@ extern void chainload_os(u32 r0, u32 id, struct atag *at, u32 address);
 extern void cpumodeswitch_hyp2svc(u32 r0, u32 id, struct atag *at, u32 address, u32 cpuid);
 
 
-__attribute__((section(".data"))) volatile u32 *gpio;
-#define INP_GPIO(g) *(gpio+((g)/10)) &= ~(7<<(((g)%10)*3))
-#define OUT_GPIO(g) *(gpio+((g)/10)) |=  (1<<(((g)%10)*3))
-#define GPIO_SET *(gpio+7)  // sets   bits which are 1 ignores bits which are 0
-#define GPIO_CLR *(gpio+10) // clears bits which are 1 ignores bits which are 0
+// __attribute__((section(".data"))) volatile u32 *gpio;
+// #define INP_GPIO(g) *(gpio+((g)/10)) &= ~(7<<(((g)%10)*3))
+// #define OUT_GPIO(g) *(gpio+((g)/10)) |=  (1<<(((g)%10)*3))
+// #define GPIO_SET *(gpio+7)  // sets   bits which are 1 ignores bits which are 0
+// #define GPIO_CLR *(gpio+10) // clears bits which are 1 ignores bits which are 0
 
 
 //////
@@ -575,16 +575,17 @@ void main(u32 r0, u32 id, struct atag *at, u32 cpuid){
 	_XDPRINTF_("%s[%u]: r0=0x%08x, id=0x%08x, at=0x%08x\n", __func__, cpuid, r0, id, at);
 
 	// chainload_os(r0,id,at,0x8000);
-    if (cpuid == 1){
-		gpio = (u32 *)GPIO_BASE;
-		INP_GPIO(7); // must use INP_GPIO before we can use OUT_GPIO
-		OUT_GPIO(7);
-		while(1){
-			GPIO_CLR = (1 << 7);
-			sleep(1);
-			GPIO_SET = (1 << 7);
-		}
-	}
+    // if (cpuid == 1){
+	// 	gpio = (u32 *)GPIO_BASE;
+	// 	INP_GPIO(7); // must use INP_GPIO before we can use OUT_GPIO
+	// 	OUT_GPIO(7);
+	// 	while(1){
+	// 		GPIO_CLR = (1 << 7);
+	// 		sleep(1);
+	// 		GPIO_SET = (1 << 7);
+	// 	}
+	// }
+	void uapp_watchdog_blink_led(cpuid);
 	_XDPRINTF_("%s[%u]: Should not come here.Halting\n", __func__, cpuid);
 	HALT();
 }
