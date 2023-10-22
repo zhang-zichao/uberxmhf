@@ -44,11 +44,6 @@
 #include <uart.h>
 #include <debug.h>
 
-// #include <stdio.h>
-// #include <stdlib.h>
-// #include <fcntl.h>
-// #include <sys/mman.h>
-#include <unistd.h>
 extern void uapp_watchdog_fiq_handler(void);
 
 __attribute__((section(".data"))) volatile u32 *gpio;
@@ -162,8 +157,13 @@ void uapp_watchdog_blink_led(u32 cpuid){
 		OUT_GPIO(7);
 		while(1){
 			GPIO_CLR = (1 << 7);
-			sleep(1);
+			for(u32 i=0;i<1024*1024;i++){
+				for (u32 j=0;j<1024;j++){}
+			}
 			GPIO_SET = (1 << 7);
+			for(u32 i=0;i<1024*1024;i++){
+				for (u32 j=0;j<1024;j++){}
+			}
 		}
 	}
 }
