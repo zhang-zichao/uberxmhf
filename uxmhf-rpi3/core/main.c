@@ -42,7 +42,7 @@
 #include <atags.h>
 #include <fdt.h>
 #include <dmaprot.h>
-#include<unistd.h>
+// #include<unistd.h>
 
 //////
 // externs
@@ -581,7 +581,7 @@ void main(u32 r0, u32 id, struct atag *at, u32 cpuid){
 		OUT_GPIO(7);
 		while(1){
 			GPIO_CLR = (1 << 7);
-			sleep(1);
+			// sleep(1);
 			GPIO_SET = (1 << 7);
 		}
 	}
