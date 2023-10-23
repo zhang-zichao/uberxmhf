@@ -153,8 +153,8 @@ void uapp_watchdog_initialize(u32 cpuid){
 void uapp_watchdog_blink_led(u32 cpuid){
     if (cpuid == 1){
 		gpio = (u32 *)GPIO_BASE;
-		INP_GPIO(7); // must use INP_GPIO before we can use OUT_GPIO
-		OUT_GPIO(7);
+		INP_GPIO(25); // must use INP_GPIO before we can use OUT_GPIO
+		OUT_GPIO(25);
 		u32 i;
 		u32 j;
 		while(1){
