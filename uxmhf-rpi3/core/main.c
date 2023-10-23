@@ -587,7 +587,6 @@ void main(u32 r0, u32 id, struct atag *at, u32 cpuid){
 			for (j=0;j<1024;j++){}
 		}
 		GPIO_CLR = (1 << 7);
-		sleep(1);
 		for(i=0;i<1024*1024;i++){
 			for (j=0;j<1024;j++){}
 		}
