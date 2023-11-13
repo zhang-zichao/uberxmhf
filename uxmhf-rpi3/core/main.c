@@ -567,7 +567,7 @@ void main(u32 r0, u32 id, struct atag *at, u32 cpuid){
 	_XDPRINTF_("%s[%u]: booting guest in SVC mode\n", __func__, cpuid);
 	_XDPRINTF_("%s[%u]: r0=0x%08x, id=0x%08x, at=0x%08x\n", __func__, cpuid, r0, id, at);
 
-	// chainload_os(r0,id,at,0x8000);
+	chainload_os(r0,id,at,0x8000);
 
 	_XDPRINTF_("%s[%u]: Should not come here.Halting\n", __func__, cpuid);
 	HALT();
@@ -620,7 +620,7 @@ void secondary_main(u32 cpuid){
 
 	_XDPRINTFSMP_("%s[%u]: Got startup signal, address=0x%08x\n", __func__, cpuid, start_address);
 
-	// chainload_os(0, 0, 0, start_address);
+	chainload_os(0, 0, 0, start_address);
 
 	_XDPRINTFSMP_("%s[%u]: Should never be here. Halting!\n", __func__, cpuid);
 	HALT();

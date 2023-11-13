@@ -124,8 +124,9 @@ u32 bcm2837_platform_waitforstartup(u32 cpuid){
 	//_XDPRINTFSMP_("%s[%u]: Waiting on mailbox startup signal...\n", __func__, cpuid);
 
 	while(1){
-		cpu_startaddr=armlocalregisters_mailboxreadclear->mailbox3readclear;
-		if(cpu_startaddr != 0) break;
+		// cpu_startaddr=armlocalregisters_mailboxreadclear->mailbox3readclear;
+		// if(cpu_startaddr != 0) break;
+		_XDPRINTFSMP_("critical app running...");
 	}
 
 	//_XDPRINTFSMP_("%s[%u]: Got startup signal, address=0x%08x\n", __func__, cpuid, cpu_startaddr);
