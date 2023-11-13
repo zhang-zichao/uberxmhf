@@ -42,7 +42,6 @@
 #include <atags.h>
 #include <fdt.h>
 #include <dmaprot.h>
-// #include <unistd.h>
 
 //////
 // externs
@@ -52,11 +51,6 @@ extern void chainload_os(u32 r0, u32 id, struct atag *at, u32 address);
 extern void cpumodeswitch_hyp2svc(u32 r0, u32 id, struct atag *at, u32 address, u32 cpuid);
 
 
-__attribute__((section(".data"))) volatile u32 *gpio;
-#define INP_GPIO(g) *(gpio+((g)/10)) &= ~(7<<(((g)%10)*3))
-#define OUT_GPIO(g) *(gpio+((g)/10)) |=  (1<<(((g)%10)*3))
-#define GPIO_SET *(gpio+7)  // sets   bits which are 1 ignores bits which are 0
-#define GPIO_CLR *(gpio+10) // clears bits which are 1 ignores bits which are 0
 
 
 //////
@@ -562,37 +556,19 @@ void main(u32 r0, u32 id, struct atag *at, u32 cpuid){
 		uapp_pvdriver_uart_initialize_uapp(cpuid);
 	#endif
 
-	// uapp_watchdog_initialize(0);
-	
-	gpio = (u32 *)GPIO_BASE;
-	INP_GPIO(7); // must use INP_GPIO before we can use OUT_GPIO
-	OUT_GPIO(7);
-	u32 i;
-	u32 j;
-	while(1){
-		GPIO_SET = (1 << 7);
-		for(i=0;i<1024*1024;i++){
-			for (j=0;j<1024;j++){}
-		}
-		GPIO_CLR = (1 << 7);
-		for(i=0;i<1024*1024;i++){
-			for (j=0;j<1024;j++){}
-		}
-	}
+
 	//////
 
 	// boot secondary cores
 	_XDPRINTF_("%s[%u]: proceeding to initialize SMP...\n", __func__, cpuid);
 	bcm2837_platform_smpinitialize();
 	_XDPRINTF_("%s[%u]: secondary cores booted, moving on...\n", __func__, cpuid);
-	// uapp_watchdog_initialize(0);
+
 	_XDPRINTF_("%s[%u]: booting guest in SVC mode\n", __func__, cpuid);
 	_XDPRINTF_("%s[%u]: r0=0x%08x, id=0x%08x, at=0x%08x\n", __func__, cpuid, r0, id, at);
 
-	// chainload_os(r0,id,at,0x8000);
-    // if (cpuid == 1){
-	// }
-	// uapp_watchdog_blink_led(1);
+	chainload_os(r0,id,at,0x8000);
+
 	_XDPRINTF_("%s[%u]: Should not come here.Halting\n", __func__, cpuid);
 	HALT();
 }
@@ -644,7 +620,7 @@ void secondary_main(u32 cpuid){
 
 	_XDPRINTFSMP_("%s[%u]: Got startup signal, address=0x%08x\n", __func__, cpuid, start_address);
 
-	chainload_os(0, 0, 0, start_address);
+	// chainload_os(0, 0, 0, start_address);
 
 	_XDPRINTFSMP_("%s[%u]: Should never be here. Halting!\n", __func__, cpuid);
 	HALT();
