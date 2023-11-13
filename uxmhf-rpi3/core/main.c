@@ -611,6 +611,14 @@ void secondary_main(u32 cpuid){
 	s2pgtbl_activatetranslation();
 	_XDPRINTF_("%s[%u]: activated stage-2 translation\n", __func__, cpuid);
 
+	u32 i;
+	u32 j;
+    while(1){
+		for(i=0;i<1024*1024;i++){
+			for (j=0;j<1024;j++){}
+		}
+		_XDPRINTFSMP_("critical app running...");
+	}
 
 	_XDPRINTF_("%s[%u]: Signalling SMP readiness and entering SMP boot wait loop...\n", __func__, cpuid);
 	armlocalregisters_mailboxwrite->mailbox3write = 1;
