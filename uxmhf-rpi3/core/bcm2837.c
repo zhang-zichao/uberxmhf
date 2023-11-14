@@ -126,7 +126,6 @@ u32 bcm2837_platform_waitforstartup(u32 cpuid){
 	u32 i;
 	u32 j;
 	while(1){
- 	   while(1){
 		if(cpuid==2){
 			for(i=0;i<1024*1024;i++){
 				for (j=0;j<1024;j++){}
