@@ -126,9 +126,10 @@ u32 bcm2837_platform_waitforstartup(u32 cpuid){
 	while(1){
 		if(cpuid==1){
 			_XDPRINTFSMP_("critical app running...");
+		}else{
+			cpu_startaddr=armlocalregisters_mailboxreadclear->mailbox3readclear;
+			if(cpu_startaddr != 0) break;
 		}
-		cpu_startaddr=armlocalregisters_mailboxreadclear->mailbox3readclear;
-		if(cpu_startaddr != 0) break;
 	}
 
 	//_XDPRINTFSMP_("%s[%u]: Got startup signal, address=0x%08x\n", __func__, cpuid, cpu_startaddr);
