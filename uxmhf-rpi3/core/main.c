@@ -619,7 +619,7 @@ void secondary_main(u32 cpuid){
 	// 	}
 	// 	_XDPRINTFSMP_("critical app running...");
 	// }
-	while(1){
+	while(cpuid==2){
 		_XDPRINTFSMP_("critical app running on [%u]...\n", cpuid);
 	}
 
