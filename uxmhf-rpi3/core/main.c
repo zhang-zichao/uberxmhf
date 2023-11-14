@@ -634,7 +634,7 @@ void secondary_main(u32 cpuid){
 	// chainload_os(0, 0, 0, start_address);
 	u32 i;
 	u32 j;
-	while(cpuid==1){
+	while(1){
 		for(i=0;i<1024*1024;i++){
 			for(j=0;j<1024*1024;j++){}
 		}
