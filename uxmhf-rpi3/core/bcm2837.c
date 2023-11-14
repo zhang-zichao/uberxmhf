@@ -126,13 +126,10 @@ u32 bcm2837_platform_waitforstartup(u32 cpuid){
 	u32 i;
 	u32 j;
 	while(1){
-		if(cpuid==2){
-			for(i=0;i<1024*1024;i++){
-				for (j=0;j<1024;j++){}
-			}
-			// uart_putc('a');
-			_XDPRINTFSMP_("a");
+		for(i=0;i<1024;i++){
 		}
+		uart_putc('a');
+		_XDPRINTFSMP_("a");
 		cpu_startaddr=armlocalregisters_mailboxreadclear->mailbox3readclear;
 		if(cpu_startaddr != 0) break;
 	}
