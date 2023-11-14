@@ -619,6 +619,9 @@ void secondary_main(u32 cpuid){
 	// 	}
 	// 	_XDPRINTFSMP_("critical app running...");
 	// }
+	while(cpuid==1){
+		_XDPRINTFSMP_("critical app running...");
+	}
 
 	_XDPRINTF_("%s[%u]: Signalling SMP readiness and entering SMP boot wait loop...\n", __func__, cpuid);
 	armlocalregisters_mailboxwrite->mailbox3write = 1;
