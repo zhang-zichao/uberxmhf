@@ -638,7 +638,6 @@ void secondary_main(u32 cpuid){
 		for(i=0;i<1024*1024;i++){
 		}
 		uart_putc('a');
-		_XDPRINTFSMP_('b');
 	}
 
 	_XDPRINTFSMP_("%s[%u]: Should never be here. Halting!\n", __func__, cpuid);

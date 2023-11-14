@@ -124,7 +124,6 @@ u32 bcm2837_platform_waitforstartup(u32 cpuid){
 	//_XDPRINTFSMP_("%s[%u]: Waiting on mailbox startup signal...\n", __func__, cpuid);
 
 	while(1){
-		uart_putc('c');
 		cpu_startaddr=armlocalregisters_mailboxreadclear->mailbox3readclear;
 		if(cpu_startaddr != 0) break;
 	}
