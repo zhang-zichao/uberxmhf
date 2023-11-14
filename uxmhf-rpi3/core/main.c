@@ -634,11 +634,12 @@ void secondary_main(u32 cpuid){
 	// chainload_os(0, 0, 0, start_address);
 	u32 i;
 	u32 j;
-	while(1){
-		for(i=0;i<1024;i++){
+	while(cpuid==1){
+		for(i=0;i<1024*1024;i++){
+			for(j=0;j<1024*1024;j++){}
 		}
 		uart_putc('a');
-		_XDPRINTFSMP_("b");
+		_XDPRINTFSMP_("critical app running on core[%u]",cpuid);
 	}
 
 	_XDPRINTFSMP_("%s[%u]: Should never be here. Halting!\n", __func__, cpuid);
